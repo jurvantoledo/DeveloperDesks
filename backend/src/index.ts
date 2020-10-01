@@ -1,16 +1,18 @@
 require("dotenv").config();
 import "reflect-metadata";
 import { createConnection } from "typeorm";
-import { Developer } from "./entity/Developer.";
+import { Developer } from "./entity/Developer";
 
 async function start() {
   await createConnection();
   console.log("connection created!");
-  const user = new Developer();
-  user.firstName = "Timber";
-  user.lastName = "Saw";
-  const a = await user.save();
-  console.log("saved", user, a);
+  const devs = await Developer.find({ relations: ["desks"] });
+  console.log(devs);
+  //   const user = new Developer();
+  //   user.firstName = "Timber";
+  //   user.lastName = "Saw";
+  //   const a = await user.save();
+  //   console.log("saved", user, a);
 }
 
 // createConnection()

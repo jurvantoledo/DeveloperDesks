@@ -1,19 +1,34 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from "typeorm";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  BaseEntity,
+  ManyToOne,
+  OneToMany,
+} from "typeorm";
+import { Developer } from "./Developer";
+import { Comment } from "./Comment";
 
 @Entity()
 export class Desk extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
-  firstName: string;
+  @Column({ nullable: true })
+  title?: string;
 
-  @Column()
-  lastName: string;
+  @Column({ nullable: false })
+  imageUrl: string;
 
-  @Column({ nullable: false, unique: true })
-  email: string;
+  @Column({ nullable: true })
+  lat?: number;
 
-  @Column()
-  password: string;
+  @Column({ nullable: true })
+  lng?: number;
+
+  @ManyToOne(type => Developer, developer => developer.desks)
+  developer: Developer;
+
+  @OneToMany(type => Comment, desk => desk.author)
+  comments: Comment[];
 }
