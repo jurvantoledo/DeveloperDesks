@@ -5,7 +5,7 @@ import { createConnection } from "typeorm";
 import deskRouter from "./routers/desk";
 import authRouter from "./routers/auth";
 
-createConnection().then(connection => {
+createConnection().then(() => {
   const PORT = 8000;
   const app = express();
 

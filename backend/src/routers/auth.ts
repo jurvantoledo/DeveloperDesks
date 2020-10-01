@@ -1,7 +1,8 @@
 import { Router, Request, Response, NextFunction } from "express";
-import { Developer } from "../entity/Developer";
 import { getRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
+import { Developer } from "../entity/Developer";
+import { toJWT } from "../auth/jwt";
 
 const router = Router();
 
@@ -42,10 +43,11 @@ router.post(
 
       const user = await getRepository(Developer).find({ where: { email } });
 
-      if (bcrypt.compareSync(password, user[0].password)) {
-        res.json("some jwt token");
-      } else {
+      if (!user[0] || !bcrypt.compareSync(password, user[0].password)) {
         res.status(401).send("invalid credentials");
+      } else {
+        const token = toJWT({ userId: user[0].id });
+        res.json({ jwt: token });
       }
     } catch (e) {
       next(e);

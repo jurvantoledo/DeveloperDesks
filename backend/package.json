@@ -15,12 +15,14 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^7.3.0",
     "reflect-metadata": "^0.1.10",
     "typeorm": "0.2.28"
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js"
+    "typeorm": "node --require ts-node/register ./node_modules/typeorm/cli.js",
+    "start-dev": "ts-node --files src/index"
   }
 }

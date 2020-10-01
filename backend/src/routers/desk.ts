@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { Desk } from "../entity/Desk";
 import { getRepository } from "typeorm";
+import { auth } from "../auth/middleware";
 
 const router = Router();
 
@@ -33,6 +34,31 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
     next(e);
   }
 });
+
+router.post(
+  "/",
+  auth,
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { title, uri } = req.body;
+
+      if (!uri) {
+        return res.status(400).send("missing parameters");
+      }
+
+      const desk = await getRepository(Desk).create({
+        title,
+        uri,
+        developer: req.user,
+      });
+      await desk.save();
+
+      res.json({ desk });
+    } catch (e) {
+      next(e);
+    }
+  }
+);
 
 router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
