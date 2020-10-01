@@ -1,0 +1,13 @@
+{
+  "type": "postgres",
+  "url": "postgres://mraafreg:N1OZogyadofdsfj5k7dU0ssg1z3V8llE@balarama.db.elephantsql.com:5432/mraafreg",
+  "entities": ["src/entity/**/*.ts"],
+  "migrations": ["src/migration/**/*.ts"],
+  "subscribers": ["src/subscriber/**/*.ts"],
+  "cli": {
+    "entitiesDir": "src/entity",
+    "migrationsDir": "src/migration",
+    "subscribersDir": "src/subscriber"
+  },
+  "migrationsTableName": "custom_migration_table"
+}
