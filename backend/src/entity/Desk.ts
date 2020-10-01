@@ -18,7 +18,7 @@ export class Desk extends BaseEntity {
   title?: string;
 
   @Column({ nullable: false })
-  imageUrl: string;
+  uri: string;
 
   @Column({ nullable: true })
   lat?: number;

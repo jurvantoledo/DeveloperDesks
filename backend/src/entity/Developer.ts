@@ -14,10 +14,7 @@ export class Developer extends BaseEntity {
   id: number;
 
   @Column()
-  firstName!: string;
-
-  @Column({ nullable: true })
-  lastName?: string;
+  name!: string;
 
   @Column({ nullable: false, unique: true })
   email!: string;
