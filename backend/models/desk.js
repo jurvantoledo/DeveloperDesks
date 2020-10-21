@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
       uri: DataTypes.STRING,
       developerId: DataTypes.INTEGER,
       title: DataTypes.STRING,
-      lat: DataTypes.STRING,
-      lng: DataTypes.STRING,
+      latitude: DataTypes.FLOAT,
+      longitude: DataTypes.FLOAT,
     },
     {
       sequelize,

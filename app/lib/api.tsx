@@ -9,6 +9,7 @@ export type DeskResult = {
   uri: string;
   latitude: number;
   longitude: number;
+  updatedAt: string;
   developer: {
     id: number;
     name: string;
@@ -47,14 +48,16 @@ export async function fetchDesk(id: number): Promise<DeskResult> {
 export async function postDesk(
   title: string,
   uri: string,
-  token: string
+  token: string,
+  latitude: number,
+  longitude: number
 ): Promise<PostDeskResult> {
   if (!token) {
     throw Error("Not authorized");
   }
   const response = await axios.post<PostDeskResult>(
     "/desks",
-    { title, uri },
+    { title, uri, latitude, longitude },
     { headers: { authorization: `Bearer ${token}` } }
   );
   return response.data;

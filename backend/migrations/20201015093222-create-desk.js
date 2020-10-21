@@ -23,11 +23,11 @@ module.exports = {
       title: {
         type: Sequelize.STRING,
       },
-      lat: {
-        type: Sequelize.STRING,
+      latitude: {
+        type: Sequelize.FLOAT,
       },
-      lng: {
-        type: Sequelize.STRING,
+      longitude: {
+        type: Sequelize.FLOAT,
       },
       createdAt: {
         allowNull: false,
