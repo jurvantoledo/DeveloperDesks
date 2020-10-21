@@ -9,7 +9,7 @@ export type DeskResult = {
   uri: string;
   latitude: number;
   longitude: number;
-  updatedAt: string;
+  createdAt: string;
   developer: {
     id: number;
     name: string;

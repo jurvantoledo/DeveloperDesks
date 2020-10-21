@@ -48,14 +48,10 @@ router.post("/", authMiddleware, async (req, res, next) => {
       latitude,
       longitude,
     });
-    res.send({ status: "Desk Created!" });
+    res.send({ status: "success" });
   } catch (e) {
     next(e);
   }
 });
 
 module.exports = router;
-
-// router.get("/", (req, res, next) => {});
-
-// router.get("/", (req, res, next) => {});

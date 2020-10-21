@@ -8,6 +8,7 @@ import {
   Dimensions,
   TextInput,
   ScrollView,
+  ActivityIndicator
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import { ImageInfo } from "expo-image-picker/build/ImagePicker.types";
@@ -107,6 +108,16 @@ export function AddDeskScreen() {
     height: width * (2 / 3),
   };
 
+  if (status === "loading") {
+    return (
+    <View style={styles.screen}>
+      <View style={{ flex: 1 }} />
+        <ActivityIndicator size='large' color={theme.colors.orange} />
+        <View style={{ flex: 1.6 }} />
+    </View>
+    )
+  }
+
   return (
     <ScrollView style={styles.screen} contentContainerStyle={{ flexGrow: 1 }}>
       <View style={styles.uploadButtonsRow}>
@@ -145,7 +156,7 @@ export function AddDeskScreen() {
             />
           </View>
           <Button
-            disabled={!title || status === "loading"}
+            disabled={!title}
             text='Upload this image!'
             onPress={startUpload}
           />
